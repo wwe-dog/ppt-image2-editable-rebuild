@@ -103,7 +103,10 @@ slide06_reference.png -> 第 6 页可编辑 PPT
 
 ```text
 examples/Codex_image2_presentation_29页逐页极详细提示词_统一母版版_修正版.docx
+examples/reference-images/
 ```
+
+其中 `examples/reference-images/` 收录了这套示例当时用 image2 生成的 29 张单页 PPT 参考图。它们是本 skill 的典型输入：每一页先用参考 PNG 判断版式、配色和复杂视觉，再把文字、卡片、箭头、说明框等重建为可编辑 PPT 元素。
 
 配套 PPT 示例为《环境成本视角_跨界流域生态补偿标准量化研究_第1-29页可编辑.pptx》。由于完整 PPT 文件体积较大，建议通过 GitHub Releases、网盘或单独示例包提供，避免安装 skill 时把大文件一起拉取。
 
@@ -154,6 +157,7 @@ skills/
 
 examples/
   Codex_image2_presentation_29页逐页极详细提示词_统一母版版_修正版.docx
+  reference-images/
 ```
 
 ## 核心原理
