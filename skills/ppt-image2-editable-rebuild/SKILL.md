@@ -1,6 +1,6 @@
 ---
 name: ppt-image2-editable-rebuild
-description: Create editable PowerPoint decks or pages from image2/imagegen visual references. Use when the user wants a two-step workflow: read a document or prompt to generate per-slide reference PNGs first, then rebuild each slide as editable PPT with local crops for complex image2 visuals while keeping titles, text, cards, arrows, labels, explanation boxes, and conclusion bars editable. Also use when continuing from existing reference PNGs and the user requires one-slide-at-a-time PPT reconstruction, preview QA, no full-slide screenshots, and no manual line breaks in ordinary text.
+description: Create editable PowerPoint decks or pages from image2/imagegen visual references. Use when the user wants a two-step workflow: read a document or prompt to generate per-slide reference PNGs first, then rebuild each slide as editable PPT with local crops for complex image2 visuals while keeping titles, text, tables, cards, arrows, labels, explanation boxes, and conclusion bars editable. Also use when continuing from existing reference PNGs and the user requires one-slide-at-a-time PPT reconstruction, preview QA, no full-slide screenshots, no manual line breaks in ordinary text, and crop-based handling for pie/donut/ring chart cards that are hard to recreate faithfully.
 ---
 
 # PPT Image2 Editable Rebuild
@@ -18,6 +18,7 @@ The reference image is the visual standard. The final PPT must remain editable.
 - Do not inspect or reuse an existing same-topic presentation unless the user explicitly asks for reuse.
 - Once reference PNGs exist, rebuild from the PNGs, not from the original Word/doc prompt.
 - Build one slide at a time unless the user explicitly changes the workflow.
+- Do not open or compare multiple reference PNG pages at once when the user requests page-by-page reconstruction.
 - Ordinary editable text should be natural paragraphs. Do not hard-code manual `\n` line breaks to force layout.
 - If text does not fit, resize the text box, card, icon, layout, or font. Do not let text protrude from its container.
 
@@ -62,11 +63,14 @@ Make these editable whenever practical:
 Use reference crops for:
 
 - image2-generated illustrations, maps, river basins, landscapes, icons, badges
+- Complex chart cards, especially pie charts, donut/ring charts, and dense radial visuals whose segment proportions or labels would be unreliable if redrawn
 - Complex background fragments that cannot be recreated cleanly
 - Small icon+title/header visuals when exact matching matters
 - Local text that is embedded in a complex visual and would visibly degrade if separated
 
-Even when a crop contains embedded text, keep surrounding headings, body text, labels, and structural elements editable.
+For pie/donut/ring charts, crop the whole local chart card or chart block, including the chart, its immediate labels, leader lines, icon/title strip, and bottom total band when present. Do not approximate chart sectors with simple editable shapes unless the user explicitly asks for fully editable charts.
+
+Even when a crop contains embedded text, keep surrounding headings, body text, tables, legends outside the crop, and structural elements editable.
 
 ## Cropping Rules
 
@@ -75,6 +79,7 @@ Prefer user-provided manual screenshots for complex local assets when available.
 If cropping from the reference PNG:
 
 - Crop generously enough to avoid cutting labels, arrows, icon edges, and bottom captions.
+- For chart-card crops, include the complete rounded card if possible. This is more reliable than separate icon, label, and chart crops.
 - Avoid unrelated neighboring text, borders, or residual artifacts.
 - Inspect the crop image itself before using it.
 - Inspect the rendered PPT preview after placing it.
@@ -133,6 +138,7 @@ After building each slide:
 2. Inspect the preview at readable size.
 3. Compare to the reference for:
    - clipped crops, cut labels, missing arrows, missing icons
+   - wrong pie/donut/ring chart proportions from manually reconstructed sectors
    - text overflow, text touching borders, body text hidden by images
    - wrong arrow direction or bad connector alignment
    - crop residue from nearby text or shapes
@@ -150,7 +156,7 @@ Before final delivery:
 - Generate a contact sheet for quick review when working on many pages.
 - Inspect the PPTX package media list and image dimensions.
 - Confirm no full-slide screenshot or reference PNG is used as a slide page.
-- Confirm media assets are local crops such as icons, illustrations, badges, maps, or complex visual fragments.
+- Confirm media assets are explainable local crops such as icons, illustrations, badges, maps, chart cards, or complex visual fragments.
 - Keep useful intermediate deck versions for long jobs, such as page ranges `1-10`, `1-20`, `1-29`.
 
 ## Delivery
@@ -169,6 +175,7 @@ Redo or patch immediately when:
 
 - The slide looks much simpler than the reference.
 - Icons or illustrations were manually redrawn when the user asked them to match image2.
+- Pie, donut, or ring charts were manually redrawn and the sector proportions are visibly wrong. Replace the chart/card with a bounded reference crop and keep the nearby table editable.
 - The final page is a flat full-slide screenshot.
 - A crop cuts off labels, arrows, icon edges, or bottom captions.
 - A crop includes unrelated neighboring text or visual residue.
