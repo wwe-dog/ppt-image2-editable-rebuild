@@ -1,4 +1,4 @@
 interface:
   display_name: "PPT Image2 Editable Rebuild"
   short_description: "Generate image2 reference PNGs, then rebuild them as editable PPT slides."
-  default_prompt: "Use /ppt-image2-editable-rebuild to create or continue an editable PPT deck from per-slide image2 reference PNGs, keeping text and structure editable while using only local crops for complex visuals."
+  default_prompt: "Use $ppt-image2-editable-rebuild to create or continue an editable PPT deck from per-slide image2 reference PNGs, keeping text and structure editable while using only local crops for complex visuals."

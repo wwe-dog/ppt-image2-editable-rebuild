@@ -81,13 +81,13 @@ slide03_reference.png
 
 ### 第二步：用本 skill 重建可编辑 PPT
 
-当单页参考图已经存在后，使用：
+当单页参考图已经存在后，如果你按下面的 **插件方式** 安装，可以使用 slash 命令：
 
 ```text
 /ppt-image2-editable-rebuild
 ```
 
-如果你的 Codex 客户端使用 skill chip 或 `$` 语法，也可以使用：
+如果你只按 **skill 方式** 安装，或你的 Codex 客户端使用 skill chip / `$` 语法，可以使用：
 
 ```text
 $ppt-image2-editable-rebuild
@@ -138,7 +138,29 @@ examples/reference-images/
 
 ## 安装方式
 
-从 GitHub 安装：
+### 方式 A：安装为 Codex plugin（推荐，支持 `/ppt-image2-editable-rebuild`）
+
+克隆或下载本仓库后，在仓库根目录运行：
+
+```bash
+python scripts/install_codex_plugin.py
+```
+
+然后按脚本输出执行：
+
+```bash
+codex plugin add ppt-image2-editable-rebuild@personal
+```
+
+安装后重启 Codex，或新开一个 thread，让 plugin command 和 skill 被重新索引。之后在输入框输入 `/`，选择：
+
+```text
+/ppt-image2-editable-rebuild
+```
+
+### 方式 B：只安装为 Codex skill（支持 `$ppt-image2-editable-rebuild`）
+
+如果你只需要 skill，不需要 slash command，可以从 GitHub 安装：
 
 ```bash
 python <skill-installer>/install-skill-from-github.py \
@@ -146,11 +168,21 @@ python <skill-installer>/install-skill-from-github.py \
   --path skills/ppt-image2-editable-rebuild
 ```
 
-安装后重启 Codex，让 skill 被识别。
+安装后重启 Codex，让 skill 被识别。只安装 skill 时，请使用：
+
+```text
+$ppt-image2-editable-rebuild
+```
 
 ## 仓库结构
 
 ```text
+.codex-plugin/
+  plugin.json
+
+commands/
+  ppt-image2-editable-rebuild.md
+
 skills/
   ppt-image2-editable-rebuild/
     SKILL.md
@@ -158,6 +190,9 @@ skills/
       openai.yaml
     scripts/
       crop_reference_assets.py
+
+scripts/
+  install_codex_plugin.py
 
 examples/
   Codex_image2_presentation_29页逐页极详细提示词_统一母版版_修正版.docx

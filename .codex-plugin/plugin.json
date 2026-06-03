@@ -1,0 +1,36 @@
+{
+  "name": "ppt-image2-editable-rebuild",
+  "version": "0.1.0",
+  "description": "Slash command and workflow skill for rebuilding image2 reference slides as editable PowerPoint decks.",
+  "author": {
+    "name": "wwe-dog",
+    "url": "https://github.com/wwe-dog"
+  },
+  "homepage": "https://github.com/wwe-dog/ppt-image2-editable-rebuild",
+  "repository": "https://github.com/wwe-dog/ppt-image2-editable-rebuild",
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "skill",
+    "powerpoint",
+    "ppt",
+    "image2",
+    "editable-ppt"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "PPT Image2 Editable Rebuild",
+    "shortDescription": "Rebuild image2 reference slides as editable PowerPoint decks.",
+    "longDescription": "Provides the /ppt-image2-editable-rebuild command and bundled workflow skill for creating editable PPT decks from image2 or imagegen reference PNGs.",
+    "developerName": "wwe-dog",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use /ppt-image2-editable-rebuild to rebuild PPT slides",
+      "Use $ppt-image2-editable-rebuild for the editable PPT workflow"
+    ]
+  }
+}

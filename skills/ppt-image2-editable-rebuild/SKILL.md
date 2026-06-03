@@ -1,6 +1,6 @@
 ---
 name: ppt-image2-editable-rebuild
-description: Create editable PowerPoint decks or pages from image2/imagegen visual references. Use when the user wants a two-step workflow: read a document or prompt to generate per-slide reference PNGs first, then rebuild each slide as editable PPT with local crops for complex image2 visuals while keeping titles, text, tables, cards, arrows, labels, explanation boxes, and conclusion bars editable. Also use when continuing from existing reference PNGs and the user requires one-slide-at-a-time PPT reconstruction, preview QA, no full-slide screenshots, no manual line breaks in ordinary text, and crop-based handling for pie/donut/ring chart cards that are hard to recreate faithfully.
+description: "Create editable PowerPoint decks or pages from image2/imagegen reference PNGs while keeping text and structure editable."
 ---
 
 # PPT Image2 Editable Rebuild
